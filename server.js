@@ -2,13 +2,15 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const Lead = require('./models/lead');
-require('./config/db');
+const connectDB = require('./config/db');
 
 const app = express();
 const port = 3000;
 
 // Middleware to parse JSON data
 app.use(bodyParser.json());
+
+connectDB();
 
 // Route to handle incoming webhook from Zoho CRM
 app.post('/webhook', async (req, res) => {
@@ -33,6 +35,8 @@ app.post('/webhook', async (req, res) => {
         res.status(500).send('Error saving lead');
     }
 });
+
+// https://282f-122-173-26-11.ngrok-free.app
 
 // Start the server
 app.listen(port, () => {
