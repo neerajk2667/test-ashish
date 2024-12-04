@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // MongoDB connection string from Atlas
-const dbURI = 'mongodb+srv://neerajk2667:5VULkdgvVd21IhOn@cluster0.mongodb.net/zohoWebhookDB?retryWrites=true&w=majority';
+const dbURI = 'mongodb+srv://ashish:Hello@mt42@cluster0.fbsaq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 
 // Connect to MongoDB Atlas
 const connectDB = async () => {
