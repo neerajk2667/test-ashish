@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 
 const leadSchema = new mongoose.Schema({
-    name: String,
+    firstName: String,
+    lastName: String,
+    title: String,
     email: String,
     phone: String,
     created_at: {
