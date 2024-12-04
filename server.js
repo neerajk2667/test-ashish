@@ -10,20 +10,29 @@ const port = 3000;
 // Middleware to parse JSON data
 app.use(bodyParser.json());
 
+// Connect to MongoDB
 connectDB();
 
 // Route to handle incoming webhook from Zoho CRM
 app.post('/webhook', async (req, res) => {
     try {
-        // Get lead data from the webhook request
-        const { name, email, phone } = req.body.data;  // Assuming Zoho sends the data as 'data'
+        // Log the received data for debugging purposes
+        console.log('Received request body:', req.body);
 
-        // Create a new lead document
-        const newLead = new Lead({
-            name,
-            email,
-            phone
-        });
+        // Get lead data from the webhook request
+        const { firstName, lastName, title, email, phone } = req.body.data || {}; // Assuming Zoho sends the data as 'data'
+
+        // Only save fields that exist
+        const leadData = {};
+
+        if (firstName) leadData.firstName = firstName;
+        if (lastName) leadData.lastName = lastName;
+        if (title) leadData.title = title;
+        if (email) leadData.email = email;
+        if (phone) leadData.phone = phone;
+
+        // Create a new lead document with dynamic data
+        const newLead = new Lead(leadData);
 
         // Save the lead to MongoDB
         await newLead.save();
@@ -35,8 +44,6 @@ app.post('/webhook', async (req, res) => {
         res.status(500).send('Error saving lead');
     }
 });
-
-// https://282f-122-173-26-11.ngrok-free.app
 
 // Start the server
 app.listen(port, () => {
