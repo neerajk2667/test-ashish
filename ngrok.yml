@@ -1,0 +1,10 @@
+# ngrok.yml configuration file
+
+# Authentication Token (Add your authtoken here)
+authtoken:2pkGVqvbGm0WpWFT7spnp5GN96N_6CPeJafbp2fdg4VVS4GF9
+
+# Tunnel configuration
+tunnels:
+  tunnel-1:
+    addr: 3000
+    proto: http
