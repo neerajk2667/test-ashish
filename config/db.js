@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 
 
-const dbURI = 'mongodb://localhost:27017/zohoWebhookDB';
+const dbURI = 'mongodb+srv://neerajk2667:5VULkdgvVd21IhOn@cluster0.mongodb.net/zohoWebhookDB?retryWrites=true&w=majority
+';
 
 mongoose.connect(dbURI, {
     // useNewUrlParser: true,
